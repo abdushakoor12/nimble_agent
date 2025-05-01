@@ -1,0 +1,20 @@
+[run]
+source = ai_coding_agent
+omit = 
+    */tests/*
+    ai_coding_agent/core/logger.py
+    ai_coding_agent/core/agents/dev_agent_callbacks.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    if self\.debug
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    pass
+    raise ImportError
+    @(abc\.)?abstractmethod
+
+[html]
+directory = htmlcov

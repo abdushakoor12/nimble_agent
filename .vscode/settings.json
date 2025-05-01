@@ -1,0 +1,58 @@
+{
+    // Python settings
+    "python.defaultInterpreterPath": "/usr/local/bin/python",
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.autoImportCompletions": true,
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestArgs": [
+        "ai_coding_agent/tests"
+    ],
+    "python.autoComplete.extraPaths": [
+        ".",
+        "/workspaces/nimble_agent"
+    ],
+    "python.envFile": "${workspaceFolder}/.env",
+    "editor.formatOnSave": true,
+    // Pylance settings
+    "python.languageServer": "Default",
+    // Mypy settings
+    "python.linting.mypyEnabled": true,
+    "mypy.configFile": "mypy.ini",
+    "mypy.runUsingActiveInterpreter": true,
+    "mypy.targets": [
+        "ai_coding_agent"
+    ],
+    // Formatting
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
+    "ruff.configuration": "pyproject.toml",
+    "ruff.enable": true,
+    "ruff.organizeImports": true,
+    "ruff.fixAll": true,
+    "ruff.lint.select": [],
+    "ruff.lineLength": 88,
+    "ruff.importStrategy": "fromEnvironment",
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/.coverage": true
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/.hg/store/**": true,
+        "**/.venv/**": true,
+        "**/venv/**": true
+    },
+    "python.analysis.extraPaths": [
+        ".",
+        "/workspaces/nimble_agent"
+    ]
+}

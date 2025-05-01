@@ -1,0 +1,165 @@
+[build-system]
+requires = ["setuptools>=42.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nimble_agent"
+version = "0.1.0"
+description = "Nimble Agent - An open source AI coding agent"
+requires-python = ">=3.12"
+dependencies = [
+    "openai>=1.3.7",
+    "python-dotenv>=1.0.0",
+    "click>=8.1.7",
+    "fastapi>=0.104.1",
+    "uvicorn>=0.24.0",
+    "pydantic>=2.5.2",
+    "httpx>=0.25.2",
+    "langchain>=0.1.0",
+    "langchain-core>=0.1.0",
+    "langchain-community>=0.0.10",
+    "supabase>=2.3.0",
+    "gotrue>=2.11.0",
+    "email-validator>=2.1.0",
+    "aiofiles>=23.2.1",
+]
+
+[project.scripts]
+nimble_agent = "ai_coding_agent.cli.commands:cli"
+
+[project.optional-dependencies]
+dev = [
+    "mypy==1.14.1",
+    "ruff>=0.5.3",
+    "black>=23.12.1",
+    "pytest>=7.4.3",
+    "pytest-cov>=4.1.0",
+    "pytest-asyncio>=0.23.2",
+    "python-lsp-server[all]>=1.9.0",
+    "pylsp-mypy>=0.6.7",
+    "pyright>=1.1.335",
+]
+
+[tool.setuptools]
+packages = ["ai_coding_agent", "ai_coding_agent.tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+indent-width = 4
+extend-exclude = [".coveragerc"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "F",   # all pyflakes rules
+    "B",   # flake8-bugbear
+    "B019", # functions defined but never used
+    "I",   # isort
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "PL",  # pylint
+    "RUF", # ruff-specific rules
+    "D",   # pydocstyle
+    "C90", # mccabe
+    "W",   # pycodestyle warnings
+    "C",   # flake8-comprehensions
+    "T20", # flake8-print
+    "RUF022", # enforce awaiting coroutines
+    "ASYNC", # asyncio-related rules
+    "F841", # unused variables
+    "F401", # unused imports
+    "F811", # redefined while unused
+    "F821", # undefined names
+    "ARG",  # unused arguments
+    "ERA",  # eradicate commented out code
+    "PLC",  # pylint conventions
+    "PLE",  # pylint errors
+    "PLR",  # pylint refactoring
+    "PLW",  # pylint warnings
+    "RUF100", # unused noqa comments
+    "U",    # pyupgrade
+    "TRY",  # tryceratops
+    "SLF",  # flake8-self
+    "TD",   # flake8-todos
+    "PYI",  # flake8-pyi (type stubs)
+    "PT",   # pytest style
+    "PT021", # unused fixtures
+]
+ignore = [
+    "D203",  # one-blank-line-before-class
+    "D213",  # multi-line-summary-second-line
+    "PLR0913", # too-many-arguments
+    "E501",  # line too long - handled by formatter
+    "TRY003", # ignore long strings
+    "TRY301", # Abstract `raise` to an inner function
+    "SLF001", # private member access
+    "TD002", # Missing author in TODO
+    "TD003", # Missing issue link 
+    "TRY300", # else
+    "TRY002", # creat your own exception
+    "ERA001", # Found commented-out code
+]
+
+[tool.pyright]
+include = ["ai_coding_agent"]
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+    ".coveragerc"
+]
+pythonVersion = "3.12"
+strict = ["ai_coding_agent"]
+
+typeCheckingMode = "strict"
+useLibraryCodeForTypes = true
+
+reportMatchNotExhaustive = "error"
+reportImportUntyped = "warning"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "native"
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "S101",  # Allow assert statements in tests
+    "PLR2004",  # Allow magic numbers in tests
+]  # Tests should follow all other code quality rules
+"**/migrations/*" = ["D"]  # Ignore docstring issues in migrations
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-wrap-aliases = true
+known-first-party = ["nimble_agent"]
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+include = '\.pyi?$'
+extend-exclude = '''
+# Directories to exclude
+/(
+    \.git
+    | \.venv
+    | venv
+    | migrations
+)/
+'''
+
+[tool.pytest.ini_options]
+pythonpath = [
+    "."
+]
+testpaths = [
+    "ai_coding_agent/tests",
+]

@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      MIN_TEST_COVERAGE: ${{ vars.MIN_TEST_COVERAGE }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      PYTHONUNBUFFERED: "1"
+      PYTHONPATH: "."
+      PYTEST_ASYNCIO_MODE: "auto"
+      PYTHONWARNINGS: "ignore::RuntimeWarning,ignore::DeprecationWarning"
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Create .env file
+      run: |
+        echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" > .env
+    
+    - name: Build and run dev container
+      uses: devcontainers/ci@v0.3
+      with:
+        imageName: ghcr.io/melbournedeveloper/codingagent
+        runCmd: |
+          chmod +x ./scripts/ci.sh
+          ./scripts/ci.sh
+
+    - name: Archive logs
+      if: always()
+      run: |
+        zip -r logs.zip logs htmlcov
+
+    - name: Upload logs artifact
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: logs
+        path: logs.zip
+        retention-days: 5
+        compression-level: 9

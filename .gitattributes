@@ -1,0 +1,5 @@
+# Don't let Git do any line ending conversion
+* -text
+
+# Force all Python files to use LF
+*.py text eol=lf

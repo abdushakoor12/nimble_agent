@@ -1,0 +1,42 @@
+{
+    "include": [
+        "ai_coding_agent"
+    ],
+    "exclude": [
+        "**/node_modules",
+        "**/__pycache__",
+        ".mypy_cache",
+        ".pytest_cache",
+        ".ruff_cache",
+        "venv",
+        ".venv",
+        "dist"
+    ],
+    "defineConstant": {},
+    "pythonVersion": "3.12",
+    "pythonPath": "/usr/local/bin/python",
+    "typeCheckingMode": "strict",
+    "useLibraryCodeForTypes": true,
+    "reportMissingImports": "warning",
+    "reportMissingTypeStubs": "none",
+    "reportUnknownMemberType": "warning",
+    "reportUnknownArgumentType": "warning",
+    "reportUnknownVariableType": "warning",
+    "reportUnknownLambdaType": "warning",
+    "reportUnknownParameterType": "warning",
+    "reportMissingParameterType": "warning",
+    "reportInvalidTypeVarUse": "warning",
+    "reportUntypedFunctionDecorator": "warning",
+    "reportUnusedImport": "warning",
+    "reportUnusedVariable": "warning",
+    "reportDuplicateImport": "warning",
+    "reportPrivateUsage": "warning",
+    "reportOperatorIssue": "warning",
+    "reportMatchNotExhaustive": "error",
+    "reportGeneralTypeIssues": "warning",
+    "extraPaths": [
+        "."
+    ],
+    "venvPath": ".",
+    "venv": "venv"
+}
