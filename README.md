@@ -1,6 +1,8 @@
 # Nimble Agent
 
-A LangChain, CLI based AI coding assistant and library aimed at fixing common issues that exist in other AI agents. You can run it at the terminal, call it from your app, or run it in the cloud. 
+A LangChain, CLI based AI coding assistant and library aimed at fixing common issues that exist in other AI agents. You can run it at the terminal, call it from your app, or run it in the cloud/CICD pipeline. 
+
+See the [major features](https://github.com/Nimblesite/nimble_agent/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22major%20feature%22) list to get a sense of the ultimate aims of this project. One other ultimate aim is cost minimisation. By default, the agent uses cheap models, and the aim is to support as many open source models as possible that can run locally. A major driver for this project is to use smart prompting and orchestration rather than brute force expensive models.
 
 The agent introduces the concept of "acceptance criteria". This tells the agent how to check if the task has succeeded. Acceptance criteria should be objective, such as something that can be actually tested in a unit test or UI test. The agent should loop until the criteria is met. This ensures that the agent doesn't just create random code and then stop. 
 
